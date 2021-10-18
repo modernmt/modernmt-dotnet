@@ -41,7 +41,7 @@ namespace ModernMT
                 { "source", source },
                 { "target", target },
                 { "q", q.ToArray() },
-                { "hints", hints },
+                { "hints", hints != null ? string.Join(",", hints) : null},
                 { "context_vector", contextVector },
             };
             
@@ -70,7 +70,7 @@ namespace ModernMT
                 { "source", source },
                 { "targets", targets.ToArray() },
                 { "text", text },
-                { "hints", hints },
+                { "hints", hints != null ? string.Join(",", hints) : null},
                 { "limit", limit }
             };
             
@@ -107,7 +107,7 @@ namespace ModernMT
                 { "targets", targets.ToArray() },
                 { "compression", compression },
                 { "limit", limit },
-                { "hints", hints }
+                { "hints", hints != null ? string.Join(",", hints) : null}
             };
 
             var files = new Dictionary<string, FileStream>
