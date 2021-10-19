@@ -14,7 +14,7 @@ namespace ModernMT
         private readonly ModernMTClient _client;
         public readonly MemoryServices Memories;
 
-        public ModernMTService(string apiKey, string platform = "modernmt-dotnet", string platformVersion = "1.0.0")
+        public ModernMTService(string apiKey, string platform = "modernmt-dotnet", string platformVersion = "1.0.1")
         {
             _client = new ModernMTClient(apiKey, platform, platformVersion);
             Memories = new MemoryServices(_client);
