@@ -15,5 +15,8 @@ namespace ModernMT.Model
         
         [JsonProperty("timeout")]
         public int Timeout { get; set; }
+        
+        [JsonProperty("format")]
+        public string Format { get; set; }
     }
 }

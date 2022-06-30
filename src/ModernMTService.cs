@@ -51,6 +51,7 @@ namespace ModernMT
                 data.Add("project_id", options.ProjectId);
                 data.Add("multiline", options.Multiline);
                 data.Add("timeout", options.Timeout);
+                data.Add("format", options.Format);
             }
             
             return _client.Send<List<Translation>>("get", "/translate", data);
