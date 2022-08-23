@@ -27,6 +27,17 @@ namespace ModernMT
             return _client.Send<List<string>>("get", "/translate/languages");
         }
 
+        public DetectedLanguage DetectLanguage(string q, string format = null)
+        {
+            var data = new Dictionary<string, dynamic>
+            {
+                {"q", q},
+                {"format", format}
+            };
+                
+            return _client.Send<DetectedLanguage>("get", "/translate/detect", data);
+        }
+
         public Translation Translate(string source, string target, string q, long[] hints = null,
             string contextVector = null, TranslateOptions options = null)
         {
