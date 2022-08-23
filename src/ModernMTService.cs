@@ -29,13 +29,18 @@ namespace ModernMT
 
         public DetectedLanguage DetectLanguage(string q, string format = null)
         {
+            return DetectLanguage(new List<string> {q}, format)[0];
+        }
+
+        public List<DetectedLanguage> DetectLanguage(List<string> q, string format = null)
+        {
             var data = new Dictionary<string, dynamic>
             {
-                {"q", q},
+                {"q", q.ToArray()},
                 {"format", format}
             };
                 
-            return _client.Send<DetectedLanguage>("get", "/translate/detect", data);
+            return _client.Send<List<DetectedLanguage>>("get", "/translate/detect", data);
         }
 
         public Translation Translate(string source, string target, string q, long[] hints = null,
