@@ -36,8 +36,8 @@ namespace ModernMT
         {
             var data = new Dictionary<string, dynamic>
             {
-                {"q", q.ToArray()},
-                {"format", format}
+                { "q", q.ToArray() },
+                { "format", format }
             };
                 
             return _client.Send<List<DetectedLanguage>>("get", "/translate/detect", data);
@@ -73,7 +73,7 @@ namespace ModernMT
                 { "source", source },
                 { "target", target },
                 { "q", q.ToArray() },
-                { "hints", hints != null ? string.Join(",", hints) : null},
+                { "hints", hints != null ? string.Join(",", hints) : null },
                 { "context_vector", contextVector },
             };
             
@@ -119,7 +119,7 @@ namespace ModernMT
                 { "source", source },
                 { "targets", targets.ToArray() },
                 { "text", text },
-                { "hints", hints != null ? string.Join(",", hints) : null},
+                { "hints", hints != null ? string.Join(",", hints) : null },
                 { "limit", limit }
             };
             
@@ -186,7 +186,7 @@ namespace ModernMT
                 { "targets", targets.ToArray() },
                 { "compression", compression },
                 { "limit", limit },
-                { "hints", hints != null ? string.Join(",", hints) : null}
+                { "hints", hints != null ? string.Join(",", hints) : null }
             };
 
             var files = new Dictionary<string, FileStream>
@@ -248,7 +248,7 @@ namespace ModernMT
                 var data = new Dictionary<string, dynamic>
                 {
                     { "name", name },
-                    { "description", description}
+                    { "description", description }
                 };
             
                 return _client.Send<Memory>("put", "/memories/" + id, data);
