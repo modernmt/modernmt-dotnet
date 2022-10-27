@@ -18,5 +18,8 @@ namespace ModernMT.Model
         
         [JsonProperty("detectedLanguage")]
         public string DetectedLanguage { get; set; }
+        
+        [JsonProperty("altTranslations")]
+        public string[] AltTranslations { get; set; }
     }
 }

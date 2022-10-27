@@ -18,5 +18,8 @@ namespace ModernMT.Model
         
         [JsonProperty("format")]
         public string Format { get; set; }
+        
+        [JsonProperty("alt_translations")]
+        public int AltTranslations { get; set; }
     }
 }
