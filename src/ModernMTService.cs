@@ -14,11 +14,18 @@ namespace ModernMT
         private readonly ModernMTClient _client;
         public readonly MemoryServices Memories;
 
-        public ModernMTService(string apiKey, string platform = "modernmt-dotnet", string platformVersion = "1.0.4")
+        public ModernMTService(string apiKey, string platform = "modernmt-dotnet", string platformVersion = "1.0.4",
+            long apiClient = 0)
         {
-            _client = new ModernMTClient(apiKey, platform, platformVersion);
+            _client = new ModernMTClient(apiKey, platform, platformVersion, apiClient);
             Memories = new MemoryServices(_client);
         }
+
+        public ModernMTService(string apiKey, long apiClient = 0) : 
+            this(apiKey, null, null, apiClient) { }
+        
+        public ModernMTService(string apiKey) : 
+            this(apiKey, null) { }
         
         #region Translation APIs
 
@@ -350,7 +357,7 @@ namespace ModernMT
         {
             private readonly HttpClient _httpClient;
             
-            internal ModernMTClient(string apiKey, string platform, string platformVersion)
+            internal ModernMTClient(string apiKey, string platform, string platformVersion, long apiClient)
             {
                 System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             
@@ -361,6 +368,9 @@ namespace ModernMT
                 _httpClient.DefaultRequestHeaders.Add("MMT-ApiKey", apiKey);
                 _httpClient.DefaultRequestHeaders.Add("MMT-Platform", platform);
                 _httpClient.DefaultRequestHeaders.Add("MMT-PlatformVersion", platformVersion);
+                
+                if (apiClient != 0)
+                    _httpClient.DefaultRequestHeaders.Add("MMT-ApiClient", apiClient.ToString());
             } 
             
             internal dynamic Send<T>(string method, string path, Dictionary<string, dynamic> data = null,

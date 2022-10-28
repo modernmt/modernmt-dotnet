@@ -12,5 +12,5 @@ csproj_ver="    <Version>${VERSION}<\/Version>"
 sed -i -E "/$csproj_match/s/.*/$csproj_ver/" src/modernmt-dotnet.csproj
 
 header_match="        public ModernMTService\(string apiKey, string platform = \"modernmt-dotnet\", string platformVersion = "
-header_ver="        public ModernMTService\(string apiKey, string platform = \"modernmt-dotnet\", string platformVersion = \"${VERSION}\"\)"
+header_ver="        public ModernMTService\(string apiKey, string platform = \"modernmt-dotnet\", string platformVersion = \"${VERSION}\"\,"
 sed -i -E "/$header_match/s/.*/$header_ver/" src/ModernMTService.cs
