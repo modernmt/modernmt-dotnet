@@ -94,6 +94,7 @@ namespace ModernMT
                 data.Add("multiline", options.Multiline);
                 data.Add("timeout", options.Timeout);
                 data.Add("format", options.Format);
+                data.Add("alt_translations", options.AltTranslations);
             }
             
             return _client.Send<List<Translation>>("get", "/translate", data);
