@@ -11,13 +11,13 @@ namespace ModernMT
 {
     public class ModernMTService
     {
-        private const string _PLATFORM = "modernmt-dotnet";
-        private const string _PLATFORM_VERSION = "1.1.1";
+        private const string Platform = "modernmt-dotnet";
+        private const string PlatformVersion = "1.1.1";
 
         private readonly ModernMTClient _client;
         public readonly MemoryServices Memories;
 
-        public ModernMTService(string apiKey, string platform = _PLATFORM, string platformVersion = _PLATFORM_VERSION,
+        public ModernMTService(string apiKey, string platform = Platform, string platformVersion = PlatformVersion,
             long apiClient = 0)
         {
             _client = new ModernMTClient(apiKey, platform, platformVersion, apiClient);
@@ -25,10 +25,10 @@ namespace ModernMT
         }
 
         public ModernMTService(string apiKey, long apiClient = 0) : 
-            this(apiKey, _PLATFORM, _PLATFORM_VERSION, apiClient) { }
+            this(apiKey, Platform, PlatformVersion, apiClient) { }
         
         public ModernMTService(string apiKey) : 
-            this(apiKey, _PLATFORM) { }
+            this(apiKey, Platform) { }
         
         #region Translation APIs
 
