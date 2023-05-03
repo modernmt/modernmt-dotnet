@@ -4,8 +4,6 @@ namespace ModernMT
 {
     public class ModernMTException : Exception
     {
-        public static readonly int InvalidAccessTokenCode = 401;
-
         public readonly int Code;
         public readonly string Type;
 
