@@ -103,7 +103,7 @@ namespace ModernMT
         public string GetContextVector(string source, string targets, string text, long[] hints = null, int limit = 0)
         {
             var res = GetContextVector(source, new List<string> { targets }, text, hints, limit);
-            return res.ContainsKey(targets) ? res[targets] : null;
+            return res.TryGetValue(targets, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVector(string source, List<string> targets, string text,
@@ -119,7 +119,7 @@ namespace ModernMT
         public string GetContextVectorByKeys(string source, string targets, string text, String[] hints = null, int limit = 0)
         {
             var res = GetContextVectorByKeys(source, new List<string> { targets }, text, hints, limit);
-            return res.ContainsKey(targets) ? res[targets] : null;
+            return res.TryGetValue(targets, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVectorByKeys(string source, List<string> targets, string text,
@@ -142,14 +142,14 @@ namespace ModernMT
             int limit = 0, string compression = null)
         {
             var res = GetContextVectorFromFile(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.ContainsKey(targets) ? res[targets] : null;
+            return res.TryGetValue(targets, out var re) ? re : null;
         }
         
         public string GetContextVectorFromFile(string source, string targets, FileStream file, long[] hints = null,
             int limit = 0, string compression = null)
         {
             var res = GetContextVectorFromFile(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.ContainsKey(targets) ? res[targets] : null;
+            return res.TryGetValue(targets, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVectorFromFile(string source, List<string> targets, string file,
@@ -172,14 +172,14 @@ namespace ModernMT
             int limit = 0, string compression = null)
         {
             var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.ContainsKey(targets) ? res[targets] : null;
+            return res.TryGetValue(targets, out var re) ? re : null;
         }
         
         public string GetContextVectorFromFileByKeys(string source, string targets, FileStream file, String[] hints = null,
             int limit = 0, string compression = null)
         {
             var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.ContainsKey(targets) ? res[targets] : null;
+            return res.TryGetValue(targets, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVectorFromFileByKeys(string source, List<string> targets, string file,
