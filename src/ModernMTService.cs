@@ -62,20 +62,20 @@ namespace ModernMT
         public List<Translation> Translate(string source, string target, List<string> q, long[] hints = null,
             string contextVector = null, TranslateOptions options = null)
         {
-            String[] _hints = null;
+            string[] hintsArray = null;
             if (hints != null)
-                _hints = hints.Select(el => el.ToString()).ToArray();
+                hintsArray = hints.Select(el => el.ToString()).ToArray();
             
-            return TranslateWithKeys(source, target, q, _hints, contextVector, options);
+            return TranslateWithKeys(source, target, q, hintsArray, contextVector, options);
         }
 
-        public Translation TranslateWithKeys(string source, string target, string q, String[] hints = null,
+        public Translation TranslateWithKeys(string source, string target, string q, string[] hints = null,
             string contextVector = null, TranslateOptions options = null)
         {
             return TranslateWithKeys(source, target, new List<string>{ q }, hints, contextVector, options)[0];
         }
         
-        public List<Translation> TranslateWithKeys(string source, string target, List<string> q, String[] hints = null,
+        public List<Translation> TranslateWithKeys(string source, string target, List<string> q, string[] hints = null,
             string contextVector = null, TranslateOptions options = null)
         {
             var data = new Dictionary<string, dynamic>
@@ -109,21 +109,21 @@ namespace ModernMT
         public Dictionary<string, string> GetContextVector(string source, List<string> targets, string text,
             long[] hints = null, int limit = 0)
         {
-            String[] _hints = null;
+            string[] hintsArray = null;
             if (hints != null)
-                _hints = hints.Select(el => el.ToString()).ToArray();
+                hintsArray = hints.Select(el => el.ToString()).ToArray();
 
-            return GetContextVectorByKeys(source, targets, text, _hints, limit);
+            return GetContextVectorByKeys(source, targets, text, hintsArray, limit);
         }
 
-        public string GetContextVectorByKeys(string source, string targets, string text, String[] hints = null, int limit = 0)
+        public string GetContextVectorByKeys(string source, string targets, string text, string[] hints = null, int limit = 0)
         {
             var res = GetContextVectorByKeys(source, new List<string> { targets }, text, hints, limit);
             return res.TryGetValue(targets, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVectorByKeys(string source, List<string> targets, string text,
-            String[] hints = null, int limit = 0)
+            string[] hints = null, int limit = 0)
         {
             var data = new Dictionary<string, dynamic>
             {
@@ -161,21 +161,21 @@ namespace ModernMT
         public Dictionary<string, string> GetContextVectorFromFile(string source, List<string> targets, FileStream file,
             long[] hints = null, int limit = 0, string compression = null)
         {
-            String[] _hints = null;
+            string[] hintsArray = null;
             if (hints != null)
-                _hints = hints.Select(el => el.ToString()).ToArray();
+                hintsArray = hints.Select(el => el.ToString()).ToArray();
 
-            return GetContextVectorFromFileByKeys(source, targets, file, _hints, limit, compression);
+            return GetContextVectorFromFileByKeys(source, targets, file, hintsArray, limit, compression);
         }
 
-        public string GetContextVectorFromFileByKeys(string source, string targets, string file, String[] hints = null,
+        public string GetContextVectorFromFileByKeys(string source, string targets, string file, string[] hints = null,
             int limit = 0, string compression = null)
         {
             var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, hints, limit, compression);
             return res.TryGetValue(targets, out var re) ? re : null;
         }
         
-        public string GetContextVectorFromFileByKeys(string source, string targets, FileStream file, String[] hints = null,
+        public string GetContextVectorFromFileByKeys(string source, string targets, FileStream file, string[] hints = null,
             int limit = 0, string compression = null)
         {
             var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, hints, limit, compression);
@@ -183,13 +183,13 @@ namespace ModernMT
         }
         
         public Dictionary<string, string> GetContextVectorFromFileByKeys(string source, List<string> targets, string file,
-            String[] hints = null, int limit = 0, string compression = null)
+            string[] hints = null, int limit = 0, string compression = null)
         {
             return GetContextVectorFromFileByKeys(source, targets, File.OpenRead(file), hints, limit, compression);
         }
 
         public Dictionary<string, string> GetContextVectorFromFileByKeys(string source, List<string> targets, FileStream file,
-            String[] hints = null, int limit = 0, string compression = null)
+            string[] hints = null, int limit = 0, string compression = null)
         {
             var data = new Dictionary<string, dynamic>
             {
@@ -232,7 +232,7 @@ namespace ModernMT
                 return Get(id.ToString());
             }
             
-            public Memory Get(String id)
+            public Memory Get(string id)
             {
                 return _client.Send<Memory>("get", "/memories/" + id);
             }
@@ -254,7 +254,7 @@ namespace ModernMT
                 return Edit(id.ToString(), name, description);
             }
             
-            public Memory Edit(String id, string name = null, string description = null)
+            public Memory Edit(string id, string name = null, string description = null)
             {
                 var data = new Dictionary<string, dynamic>
                 {
@@ -270,7 +270,7 @@ namespace ModernMT
                 return Delete(id.ToString());
             }
 
-            public Memory Delete(String id)
+            public Memory Delete(string id)
             {
                 return _client.Send<Memory>("delete", "/memories/" + id);
             }
@@ -281,7 +281,7 @@ namespace ModernMT
                 return Add(id.ToString(), source, target, sentence, translation, tuid);
             }
 
-            public ImportJob Add(String id, string source, string target, string sentence, string translation,
+            public ImportJob Add(string id, string source, string target, string sentence, string translation,
                 string tuid = null)
             {
                 var data = new Dictionary<string, dynamic>
@@ -302,7 +302,7 @@ namespace ModernMT
                 return Replace(id.ToString(), tuid, source, target, sentence, translation);
             }
             
-            public ImportJob Replace(String id, string tuid, string source, string target, string sentence,
+            public ImportJob Replace(string id, string tuid, string source, string target, string sentence,
                 string translation)
             {
                 var data = new Dictionary<string, dynamic>
@@ -327,12 +327,12 @@ namespace ModernMT
                 return Import(id.ToString(), tmx, compression);
             }
 
-            public ImportJob Import(String id, string tmx, string compression = null)
+            public ImportJob Import(string id, string tmx, string compression = null)
             {
                 return Import(id, File.OpenRead(tmx), compression);
             }
 
-            public ImportJob Import(String id, FileStream tmx, string compression = null)
+            public ImportJob Import(string id, FileStream tmx, string compression = null)
             {
                 var data = new Dictionary<string, dynamic>
                 {
@@ -378,7 +378,7 @@ namespace ModernMT
             } 
             
             internal dynamic Send<T>(string method, string path, Dictionary<string, dynamic> data = null,
-                Dictionary<string, FileStream> files = null)
+                Dictionary<string, FileStream> files = null, Dictionary<string, string> headers = null)
             {
                 data = data?
                     .Where(entry => entry.Value != null)
@@ -390,6 +390,14 @@ namespace ModernMT
                 
                 var request = new HttpRequestMessage(HttpMethod.Post, path);
                 request.Headers.Add("X-HTTP-Method-Override", method);
+
+                if (headers != null)
+                {
+                    foreach(var entry in headers)
+                    {
+                        request.Headers.Add(entry.Key, entry.Value);
+                    }
+                }
 
                 if (files != null)
                 {
