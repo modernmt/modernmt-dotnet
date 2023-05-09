@@ -430,12 +430,14 @@ namespace ModernMT
                 var response = contentTask.Result;
                 var json = JObject.Parse(response);
                 
+                // ReSharper disable once PossibleNullReferenceException
                 var status = json["status"].ToObject<int>();
                 if (status >= 300 || status < 200)
                 {
                     var type = "UnknownException";
                     var message = "No details provided.";
                     
+                    // ReSharper disable once PossibleNullReferenceException
                     var error = json["error"].ToObject<dynamic>();
                     if (error == null) 
                         throw new ModernMTException(status, type, message);
@@ -448,8 +450,8 @@ namespace ModernMT
                     throw new ModernMTException(status, type, message);
                 }
 
-                var result = json["data"];
-                return result.ToObject(typeof(T));
+                // ReSharper disable once PossibleNullReferenceException
+                return json["data"].ToObject(typeof(T));
             }
         }
         
