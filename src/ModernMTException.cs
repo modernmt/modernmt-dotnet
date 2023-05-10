@@ -2,6 +2,7 @@ using System;
 
 namespace ModernMT
 {
+    // ReSharper disable once InconsistentNaming
     public class ModernMTException : Exception
     {
         public readonly int Code;

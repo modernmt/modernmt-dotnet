@@ -9,6 +9,7 @@ using System.Net.Http;
 
 namespace ModernMT
 {
+    // ReSharper disable once InconsistentNaming
     public class ModernMTService
     {
         private const string Platform = "modernmt-dotnet";
@@ -357,6 +358,7 @@ namespace ModernMT
 
         #region Http Wrapper
 
+        // ReSharper disable once InconsistentNaming
         internal class ModernMTClient
         {
             private readonly HttpClient _httpClient;
