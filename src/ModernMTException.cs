@@ -13,12 +13,6 @@ namespace ModernMT
             Type = type;
         }
 
-        public ModernMTException(int code, string type, string message, Exception innerException) : base(message, innerException)
-        {
-            Code = code;
-            Type = type;
-        }
-
         public override string ToString()
         {
             return Message + " (" + Code + " - " + Type + ")";

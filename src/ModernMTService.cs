@@ -434,20 +434,9 @@ namespace ModernMT
                 var status = json["status"].ToObject<int>();
                 if (status >= 300 || status < 200)
                 {
-                    var type = "UnknownException";
-                    var message = "No details provided.";
-                    
                     // ReSharper disable once PossibleNullReferenceException
                     var error = json["error"].ToObject<dynamic>();
-                    if (error == null) 
-                        throw new ModernMTException(status, type, message);
-                    
-                    if (error.type != null) 
-                        type = error.type;
-                    if (error.message != null) 
-                        message = error.message;
-
-                    throw new ModernMTException(status, type, message);
+                    throw new ModernMTException(status, (string) error.type, (string) error.message);
                 }
 
                 // ReSharper disable once PossibleNullReferenceException
