@@ -21,5 +21,11 @@ namespace ModernMT.Model
         
         [JsonProperty("alt_translations")]
         public int AltTranslations { get; set; }
+
+        [JsonProperty("metadata")]
+        public dynamic Metadata { get; set; }
+        
+        // not in json body but in request headers
+        public string IdempotencyKey { get; set; }
     }
 }
