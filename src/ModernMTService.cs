@@ -53,6 +53,16 @@ namespace ModernMT
                 
             return _client.Send<List<DetectedLanguage>>("get", "/translate/detect", data);
         }
+        
+        public Translation Translate(string source, string target, string q, TranslateOptions options)
+        {
+            return TranslateWithKeys(source, target, new List<string>{ q }, null, null, options)[0];
+        }
+        
+        public List<Translation> Translate(string source, string target, List<string> q, TranslateOptions options)
+        {
+            return TranslateWithKeys(source, target, q, null, null, options);
+        }
 
         public Translation Translate(string source, string target, string q, long[] hints = null,
             string contextVector = null, TranslateOptions options = null)
