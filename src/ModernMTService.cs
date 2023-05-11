@@ -193,22 +193,10 @@ namespace ModernMT
             return GetContextVectorFromFileByKeys(source, targets, file, hintsArray, limit, compression);
         }
         
-        public string GetContextVectorFromFileByKeys(string source, string targets, string file, string compression)
-        {
-            var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, null, 0, compression);
-            return res.TryGetValue(targets, out var re) ? re : null;
-        }
-
         public string GetContextVectorFromFileByKeys(string source, string targets, string file, string[] hints = null,
             int limit = 0, string compression = null)
         {
             var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.TryGetValue(targets, out var re) ? re : null;
-        }
-        
-        public string GetContextVectorFromFileByKeys(string source, string targets, FileStream file, string compression)
-        {
-            var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, null, 0, compression);
             return res.TryGetValue(targets, out var re) ? re : null;
         }
         
@@ -219,22 +207,10 @@ namespace ModernMT
             return res.TryGetValue(targets, out var re) ? re : null;
         }
         
-        public Dictionary<string, string> GetContextVectorFromFileByKeys(string source, List<string> targets,
-            string file, string compression)
-        {
-            return GetContextVectorFromFileByKeys(source, targets, File.OpenRead(file), null, 0, compression);
-        }
-        
         public Dictionary<string, string> GetContextVectorFromFileByKeys(string source, List<string> targets, string file,
             string[] hints = null, int limit = 0, string compression = null)
         {
             return GetContextVectorFromFileByKeys(source, targets, File.OpenRead(file), hints, limit, compression);
-        }
-
-        public Dictionary<string, string> GetContextVectorFromFileByKeys(string source, List<string> targets,
-            FileStream file, string compression)
-        {
-            return GetContextVectorFromFileByKeys(source, targets, file, null, 0, compression);
         }
 
         public Dictionary<string, string> GetContextVectorFromFileByKeys(string source, List<string> targets, FileStream file,
