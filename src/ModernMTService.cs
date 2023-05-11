@@ -25,12 +25,12 @@ namespace ModernMT
             Memories = new MemoryServices(_client);
         }
 
-        public ModernMTService(string apiKey, long apiClient = 0) : 
-            this(apiKey, Platform, PlatformVersion, apiClient) { }
-        
-        public ModernMTService(string apiKey) : 
-            this(apiKey, Platform) { }
-        
+        public ModernMTService(string apiKey, long apiClient) :
+            this(apiKey, Platform, PlatformVersion, apiClient)
+        {
+            
+        }
+
         #region Translation APIs
 
         public List<string> ListSupportedLanguages()
