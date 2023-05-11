@@ -16,7 +16,7 @@ namespace ModernMT
     public class ModernMTService
     {
         private const string Platform = "modernmt-dotnet";
-        private const string PlatformVersion = "1.1.1";
+        private const string PlatformVersion = "1.2.0";
 
         private readonly ModernMTClient _client;
         public readonly MemoryServices Memories;
