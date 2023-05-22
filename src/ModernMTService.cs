@@ -275,10 +275,10 @@ namespace ModernMT
             _batchPublicKeyTimestampSec = DateTimeOffset.Now.ToUnixTimeSeconds();
         }
 
-        public string GetContextVector(string source, string targets, string text, long[] hints = null, int limit = 0)
+        public string GetContextVector(string source, string target, string text, long[] hints = null, int limit = 0)
         {
-            var res = GetContextVector(source, new List<string> { targets }, text, hints, limit);
-            return res.TryGetValue(targets, out var re) ? re : null;
+            var res = GetContextVector(source, new List<string> { target }, text, hints, limit);
+            return res.TryGetValue(target, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVector(string source, List<string> targets, string text,
@@ -291,10 +291,10 @@ namespace ModernMT
             return GetContextVectorByKeys(source, targets, text, hintsArray, limit);
         }
 
-        public string GetContextVectorByKeys(string source, string targets, string text, string[] hints = null, int limit = 0)
+        public string GetContextVectorByKeys(string source, string target, string text, string[] hints = null, int limit = 0)
         {
-            var res = GetContextVectorByKeys(source, new List<string> { targets }, text, hints, limit);
-            return res.TryGetValue(targets, out var re) ? re : null;
+            var res = GetContextVectorByKeys(source, new List<string> { target }, text, hints, limit);
+            return res.TryGetValue(target, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVectorByKeys(string source, List<string> targets, string text,
@@ -313,30 +313,30 @@ namespace ModernMT
             return ((JObject) res["vectors"]).ToObject<Dictionary<string, string>>();
         }
         
-        public string GetContextVectorFromFile(string source, string targets, string file, string compression)
+        public string GetContextVectorFromFile(string source, string target, string file, string compression)
         {
-            var res = GetContextVectorFromFile(source, new List<string>{ targets }, file, null, 0, compression);
-            return res.TryGetValue(targets, out var re) ? re : null;
+            var res = GetContextVectorFromFile(source, new List<string>{ target }, file, null, 0, compression);
+            return res.TryGetValue(target, out var re) ? re : null;
         }
 
-        public string GetContextVectorFromFile(string source, string targets, string file, long[] hints = null,
+        public string GetContextVectorFromFile(string source, string target, string file, long[] hints = null,
             int limit = 0, string compression = null)
         {
-            var res = GetContextVectorFromFile(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.TryGetValue(targets, out var re) ? re : null;
+            var res = GetContextVectorFromFile(source, new List<string>{ target }, file, hints, limit, compression);
+            return res.TryGetValue(target, out var re) ? re : null;
         }
         
-        public string GetContextVectorFromFile(string source, string targets, FileStream file, string compression)
+        public string GetContextVectorFromFile(string source, string target, FileStream file, string compression)
         {
-            var res = GetContextVectorFromFile(source, new List<string>{ targets }, file, null, 0, compression);
-            return res.TryGetValue(targets, out var re) ? re : null;
+            var res = GetContextVectorFromFile(source, new List<string>{ target }, file, null, 0, compression);
+            return res.TryGetValue(target, out var re) ? re : null;
         }
         
-        public string GetContextVectorFromFile(string source, string targets, FileStream file, long[] hints = null,
+        public string GetContextVectorFromFile(string source, string target, FileStream file, long[] hints = null,
             int limit = 0, string compression = null)
         {
-            var res = GetContextVectorFromFile(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.TryGetValue(targets, out var re) ? re : null;
+            var res = GetContextVectorFromFile(source, new List<string>{ target }, file, hints, limit, compression);
+            return res.TryGetValue(target, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVectorFromFile(string source, List<string> targets, string file,
@@ -367,18 +367,18 @@ namespace ModernMT
             return GetContextVectorFromFileByKeys(source, targets, file, hintsArray, limit, compression);
         }
         
-        public string GetContextVectorFromFileByKeys(string source, string targets, string file, string[] hints = null,
+        public string GetContextVectorFromFileByKeys(string source, string target, string file, string[] hints = null,
             int limit = 0, string compression = null)
         {
-            var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.TryGetValue(targets, out var re) ? re : null;
+            var res = GetContextVectorFromFileByKeys(source, new List<string>{ target }, file, hints, limit, compression);
+            return res.TryGetValue(target, out var re) ? re : null;
         }
         
-        public string GetContextVectorFromFileByKeys(string source, string targets, FileStream file, string[] hints = null,
+        public string GetContextVectorFromFileByKeys(string source, string target, FileStream file, string[] hints = null,
             int limit = 0, string compression = null)
         {
-            var res = GetContextVectorFromFileByKeys(source, new List<string>{ targets }, file, hints, limit, compression);
-            return res.TryGetValue(targets, out var re) ? re : null;
+            var res = GetContextVectorFromFileByKeys(source, new List<string>{ target }, file, hints, limit, compression);
+            return res.TryGetValue(target, out var re) ? re : null;
         }
         
         public Dictionary<string, string> GetContextVectorFromFileByKeys(string source, List<string> targets, string file,
