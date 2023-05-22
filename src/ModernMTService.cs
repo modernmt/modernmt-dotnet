@@ -408,6 +408,11 @@ namespace ModernMT
             return ((JObject) res["vectors"]).ToObject<Dictionary<string, string>>();
         }
 
+        public User Me()
+        {
+            return _client.Send<User>("get", "/users/me");
+        }
+
         #endregion
 
         #region Memory APIs
