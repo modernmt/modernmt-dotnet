@@ -413,6 +413,26 @@ namespace ModernMT
             return _client.Send<User>("get", "/users/me");
         }
 
+        public QualityEstimation Qe(string source, string target, string sentence, string translation)
+        {
+            return Qe(source, target,
+                new List<string> { sentence }, new List<string> { translation })[0];
+        }
+        
+        public List<QualityEstimation> Qe(string source, string target,
+            List<string> sentences, List<string> translations)
+        {
+            var data = new Dictionary<string, dynamic>
+            {
+                { "source", source },
+                { "target", target },
+                { "sentence", sentences.ToArray() },
+                { "translation", translations.ToArray() }
+            };
+
+            return _client.Send<List<QualityEstimation>>("get", "/qe", data);
+        }
+
         #endregion
 
         #region Memory APIs
