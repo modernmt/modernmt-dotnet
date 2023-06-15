@@ -12,6 +12,7 @@
     <RepositoryType>git</RepositoryType> 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +21,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 
     <None Include="..\LICENSE" Pack="true" PackagePath="" />
+    <None Include="..\README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
