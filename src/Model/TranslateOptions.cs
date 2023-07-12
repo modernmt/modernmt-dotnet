@@ -25,6 +25,9 @@ namespace ModernMT.Model
         [JsonProperty("metadata")]
         public dynamic Metadata { get; set; }
         
+        [JsonProperty("session")]
+        public string Session { get; set; }
+        
         // not in json body but in request headers
         public string IdempotencyKey { get; set; }
     }

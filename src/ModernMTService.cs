@@ -112,6 +112,7 @@ namespace ModernMT
                 data.Add("timeout", options.Timeout);
                 data.Add("format", options.Format);
                 data.Add("alt_translations", options.AltTranslations);
+                data.Add("session", options.Session);
             }
             
             return _client.Send<List<Translation>>("get", "/translate", data);
@@ -179,6 +180,8 @@ namespace ModernMT
                 data.Add("multiline", options.Multiline);
                 data.Add("format", options.Format);
                 data.Add("alt_translations", options.AltTranslations);
+                data.Add("session", options.Session);
+
                 data.Add("metadata", options.Metadata);
                 
                 headers.Add("x-idempotency-key", options.IdempotencyKey);
@@ -500,13 +503,13 @@ namespace ModernMT
             }
 
             public ImportJob Add(long id, string source, string target, string sentence, string translation,
-                string tuid = null)
+                string tuid = null, string session = null)
             {
-                return Add(id.ToString(), source, target, sentence, translation, tuid);
+                return Add(id.ToString(), source, target, sentence, translation, tuid, session);
             }
 
             public ImportJob Add(string id, string source, string target, string sentence, string translation,
-                string tuid = null)
+                string tuid = null, string session = null)
             {
                 var data = new Dictionary<string, dynamic>
                 {
@@ -514,20 +517,21 @@ namespace ModernMT
                     { "target", target },
                     { "sentence", sentence },
                     { "translation", translation },
-                    { "tuid", tuid }
+                    { "tuid", tuid },
+                    { "session", session }
                 };
             
                 return _client.Send<ImportJob>("post",  "/memories/" + id + "/content", data);
             }
             
             public ImportJob Replace(long id, string tuid, string source, string target, string sentence,
-                string translation)
+                string translation, string session = null)
             {
-                return Replace(id.ToString(), tuid, source, target, sentence, translation);
+                return Replace(id.ToString(), tuid, source, target, sentence, translation, session);
             }
             
             public ImportJob Replace(string id, string tuid, string source, string target, string sentence,
-                string translation)
+                string translation, string session = null)
             {
                 var data = new Dictionary<string, dynamic>
                 {
@@ -535,7 +539,8 @@ namespace ModernMT
                     { "source", source },
                     { "target", target },
                     { "sentence", sentence },
-                    { "translation", translation }
+                    { "translation", translation },
+                    { "session", session }
                 };
             
                 return _client.Send<ImportJob>("put",  "/memories/" + id + "/content", data);
