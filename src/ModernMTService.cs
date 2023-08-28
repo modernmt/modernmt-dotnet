@@ -113,6 +113,10 @@ namespace ModernMT
                 data.Add("format", options.Format);
                 data.Add("alt_translations", options.AltTranslations);
                 data.Add("session", options.Session);
+                data.Add("ignore_glossary_case", options.IgnoreGlossaryCase);
+
+                if (options.Glossaries != null)
+                    data.Add("glossaries", string.Join(",", options.Glossaries));
             }
             
             return _client.Send<List<Translation>>("get", "/translate", data);
@@ -181,6 +185,10 @@ namespace ModernMT
                 data.Add("format", options.Format);
                 data.Add("alt_translations", options.AltTranslations);
                 data.Add("session", options.Session);
+                data.Add("ignore_glossary_case", options.IgnoreGlossaryCase);
+
+                if (options.Glossaries != null)
+                    data.Add("glossaries", string.Join(",", options.Glossaries));
 
                 data.Add("metadata", options.Metadata);
                 
@@ -576,6 +584,71 @@ namespace ModernMT
                 return _client.Send<ImportJob>("post", "/memories/" + id + "/content", data, files);
             }
 
+            public ImportJob AddToGlossary(long id, List<GlossaryTerm> terms, string type, string tuid)
+            {
+                return AddToGlossary(id.ToString(), terms, type, tuid);
+            }
+
+            public ImportJob AddToGlossary(string id, List<GlossaryTerm> terms, string type, string tuid)
+            {
+                var data = new Dictionary<string, dynamic>
+                {
+                    { "terms", terms },
+                    { "type", type },
+                    { "tuid", tuid }
+                };
+                
+                return _client.Send<ImportJob>("post", "/memories/" + id + "/glossary", data);
+            }
+            
+            public ImportJob ReplaceInGlossary(long id, List<GlossaryTerm> terms, string type, string tuid)
+            {
+                return ReplaceInGlossary(id.ToString(), terms, type, tuid);
+            }
+            
+            public ImportJob ReplaceInGlossary(string id, List<GlossaryTerm> terms, string type, string tuid)
+            {
+                var data = new Dictionary<string, dynamic>
+                {
+                    { "terms", terms },
+                    { "type", type },
+                    { "tuid", tuid }
+                };
+                
+                return _client.Send<ImportJob>("put", "/memories/" + id + "/glossary", data);
+            }
+            
+            public ImportJob ImportGlossary(long id, string csv, string type, string compression = null)
+            {
+                return ImportGlossary(id.ToString(), File.OpenRead(csv), type, compression);
+            }
+            
+            public ImportJob ImportGlossary(long id, FileStream csv, string type, string compression = null)
+            {
+                return ImportGlossary(id.ToString(), csv, type, compression);
+            }
+            
+            public ImportJob ImportGlossary(string id, string csv, string type, string compression = null)
+            {
+                return ImportGlossary(id, File.OpenRead(csv), type, compression);
+            }
+            
+            public ImportJob ImportGlossary(string id, FileStream csv, string type, string compression = null)
+            {
+                var data = new Dictionary<string, dynamic>
+                {
+                    { "type", type },
+                    { "compression", compression }
+                };
+                
+                var files = new Dictionary<string, FileStream>
+                {
+                    { "csv", csv }
+                };
+            
+                return _client.Send<ImportJob>("post", "/memories/" + id + "/glossary", data, files);
+            }
+            
             public ImportJob GetImportStatus(string uuid)
             {
                 return _client.Send<ImportJob>("get", "import-jobs/" + uuid);

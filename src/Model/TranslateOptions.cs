@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 namespace ModernMT.Model
 {
@@ -27,8 +29,26 @@ namespace ModernMT.Model
         
         [JsonProperty("session")]
         public string Session { get; set; }
+
+        [JsonProperty("glossaries")]
+        public List<string> Glossaries { get; private set; }
+
+        [JsonProperty("ignore_glossary_case")]
+        public bool IgnoreGlossaryCase { get; set; }
         
         // not in json body but in request headers
         public string IdempotencyKey { get; set; }
+        
+        // custom setters
+        
+        public void SetGlossaries(List<string> value)
+        {
+            Glossaries = value;
+        }
+
+        public void SetGlossaries(long[] value)
+        {
+            Glossaries = value.Select(g => g.ToString()).ToList();
+        }
     }
 }
