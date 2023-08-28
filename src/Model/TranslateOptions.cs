@@ -36,6 +36,9 @@ namespace ModernMT.Model
         [JsonProperty("ignore_glossary_case")]
         public bool IgnoreGlossaryCase { get; set; }
         
+        [JsonProperty("mask_profanities")]
+        public bool MaskProfanities { get; set; }
+        
         // not in json body but in request headers
         public string IdempotencyKey { get; set; }
         

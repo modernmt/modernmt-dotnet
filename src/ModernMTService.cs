@@ -114,6 +114,7 @@ namespace ModernMT
                 data.Add("alt_translations", options.AltTranslations);
                 data.Add("session", options.Session);
                 data.Add("ignore_glossary_case", options.IgnoreGlossaryCase);
+                data.Add("mask_profanities", options.MaskProfanities);
 
                 if (options.Glossaries != null)
                     data.Add("glossaries", string.Join(",", options.Glossaries));
@@ -186,6 +187,7 @@ namespace ModernMT
                 data.Add("alt_translations", options.AltTranslations);
                 data.Add("session", options.Session);
                 data.Add("ignore_glossary_case", options.IgnoreGlossaryCase);
+                data.Add("mask_profanities", options.MaskProfanities);
 
                 if (options.Glossaries != null)
                     data.Add("glossaries", string.Join(",", options.Glossaries));
