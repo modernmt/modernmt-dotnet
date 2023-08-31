@@ -100,7 +100,7 @@ namespace ModernMT
                 { "source", source },
                 { "target", target },
                 { "q", q.ToArray() },
-                { "hints", hints != null ? string.Join(",", hints) : null },
+                { "hints", hints },
                 { "context_vector", contextVector },
             };
             
@@ -115,9 +115,7 @@ namespace ModernMT
                 data.Add("session", options.Session);
                 data.Add("ignore_glossary_case", options.IgnoreGlossaryCase);
                 data.Add("mask_profanities", options.MaskProfanities);
-
-                if (options.Glossaries != null)
-                    data.Add("glossaries", string.Join(",", options.Glossaries));
+                data.Add("glossaries", options.Glossaries);
             }
             
             return _client.Send<List<Translation>>("get", "/translate", data);
@@ -175,7 +173,7 @@ namespace ModernMT
                 { "source", source },
                 { "target", target },
                 { "q", q },
-                { "hints", hints != null ? string.Join(",", hints) : null },
+                { "hints", hints },
                 { "context_vector", contextVector },
             };
 
@@ -188,9 +186,7 @@ namespace ModernMT
                 data.Add("session", options.Session);
                 data.Add("ignore_glossary_case", options.IgnoreGlossaryCase);
                 data.Add("mask_profanities", options.MaskProfanities);
-
-                if (options.Glossaries != null)
-                    data.Add("glossaries", string.Join(",", options.Glossaries));
+                data.Add("glossaries", options.Glossaries);
 
                 data.Add("metadata", options.Metadata);
                 
@@ -318,7 +314,7 @@ namespace ModernMT
                 { "source", source },
                 { "targets", targets.ToArray() },
                 { "text", text },
-                { "hints", hints != null ? string.Join(",", hints) : null },
+                { "hints", hints },
                 { "limit", limit }
             };
             
@@ -409,7 +405,7 @@ namespace ModernMT
                 { "targets", targets.ToArray() },
                 { "compression", compression },
                 { "limit", limit },
-                { "hints", hints != null ? string.Join(",", hints) : null }
+                { "hints", hints }
             };
 
             var files = new Dictionary<string, FileStream>
