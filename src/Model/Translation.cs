@@ -21,5 +21,8 @@ namespace ModernMT.Model
         
         [JsonProperty("altTranslations")]
         public string[] AltTranslations { get; set; }
+        
+        [JsonProperty("detectedProfanities")]
+        public bool? DetectedProfanities { get; set; }
     }
 }
