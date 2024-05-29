@@ -439,7 +439,7 @@ namespace ModernMT
                 { "translation", translations.ToArray() }
             };
 
-            return _client.Send<List<QualityEstimation>>("get", "/qe", data);
+            return _client.Send<List<QualityEstimation>>("get", "/translate/qe", data);
         }
 
         #endregion
